@@ -1,5 +1,7 @@
 var express = require('express');
 var router = express.Router();
+const fs = require('fs');
+const ls = require('ls');
 
 /*
 #################################################
@@ -47,6 +49,39 @@ router.post('/:category', upload, (req, res, next) => {
   }, err => {
     console.log(err);
   })
+});
+
+/* DELETE an image */
+var findRemoveSync = require('find-remove')
+
+router.delete('/:filename',(req, res, next)=>{
+  var result = findRemoveSync('./public/images/',{files: req.params.filename, limit: 1})
+  Object.keys(result).length == 0? res.sendStatus(400) : res.sendStatus(200)
+  res.end()
+})
+
+/* GET ALL IMAGES from CATEGORY */
+router.get('/:category', (req, res, next) => {
+
+  try {
+    let listedImages = ls('./public/images/'+req.params.category+'/*');
+    let images = [];
+    console.log(req.param.category)
+
+    listedImages.forEach( listing => {
+      images.push(listing.name);
+    });
+
+    let reply = {
+      "files":  images
+    };
+
+    res.json(reply);
+
+  } catch(err) {
+    console.log(err);
+    res.end(400);
+  }
 });
 
 module.exports = router;
