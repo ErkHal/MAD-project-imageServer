@@ -8,7 +8,7 @@ router.post('/', (req, res, next) => {
 
     console.log(req.body);
 
-    fs.mkdir('public/images/' + req.body.category);
+    fs.mkdir('./public/images/' + req.body.category);
     res.end('Category created !');
   });
 

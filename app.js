@@ -28,7 +28,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 //####### ADD PATH TO ROUTINGS
 app.use('/', index);
 app.use('/images', images);
-app.use('/images/categories', categories);
+app.use('/categories', categories);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
