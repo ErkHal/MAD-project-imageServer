@@ -50,7 +50,7 @@ router.get('/:category', (req, res, next) => {
     console.log(req.param.category)
 
     listedImages.forEach( listing => {
-      images.push(listing.name);
+      images.push(listing.file);
     });
 
     let reply = {
