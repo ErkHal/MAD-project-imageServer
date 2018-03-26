@@ -6,7 +6,7 @@ const ls = require('ls');
 /*
 #################################################
     MULTER CONFIGURATIONS
-*/
+
 const multer = require('multer');
 
 //Configure multer to store all images to static directory
@@ -29,27 +29,31 @@ const storage = multer.diskStorage({
     ROUTINGS
 */
 /* POST an image to a category */
-router.post('/:category', upload, (req, res, next) => {
+router.post('/:category', function (req, res, next){
+  var tmp = new Buffer.from(req.body.file,'base64').toString()
+  console.log
+  var str = tmp.split(",")[1]
+  var ext = tmp.split("/",1)[1].split(";")[0]
+  var raw = new Buffer.from(str, 'base64')
 
-  upload(req, res, err => {
-    if (err) {
-      return res.end('Error uploading file');
-    }
+  fs.writeFile('./public/images/'+req.params.category+'/'+Date.now()+"."+ext,raw, function(err) {
+    if(err) console.log("error from writefile idk why")
+  })
+  
+ console.log("after assingment")
+
   const host = req.hostname;
-  const filePath = req.protocol + "://" + host + ':3000' + '/'
-                + req.file.path.split('public/')[1];
 
   const response = {
     "message":"File Uploaded !",
-    "url": filePath
+    "url": "test"
   };
 
-  res.json(response);
+  res.json(response)
 
   }, err => {
-    console.log(err);
-  })
-});
+    console.log("encountered an error somwhere somehow idk lol")
+  });
 
 /* DELETE an image */
 var findRemoveSync = require('find-remove')
