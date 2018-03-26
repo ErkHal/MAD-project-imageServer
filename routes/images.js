@@ -4,51 +4,32 @@ const fs = require('fs');
 const ls = require('ls');
 
 /*
-#################################################
-    MULTER CONFIGURATIONS
-*/
-const multer = require('multer');
-
-//Configure multer to store all images to static directory
-const storage = multer.diskStorage({
-    destination: function (req, file, cb) {
-      cb(null, 'public/images/' + req.params.category)
-    },
-    filename: function (req, file, cb) {
-      cb(null, Date.now() + '.' + file.mimetype.split('/')[1]);
-    }
-  });
-
-  const upload =
-    multer({
-      storage: storage
-    }).single('file');
-
-/*
 ################################################
     ROUTINGS
 */
 /* POST an image to a category */
-router.post('/:category', upload, (req, res, next) => {
+router.post('/:category',(req, res , next) => {
 
-  upload(req, res, err => {
-    if (err) {
-      return res.end('Error uploading file');
-    }
-  const host = req.hostname;
-  const filePath = req.protocol + "://" + host + ':3000' + '/'
-                + req.file.path.split('public/')[1];
+  /*Split the received string into data type declaration and
+   the actual base64 string*/
+  let base64DataArr = req.body.file.split(',');
 
-  const response = {
-    "message":"File Uploaded !",
-    "url": filePath
-  };
+  //Extract the mimetype from the data declaration string
+  let mimeType = base64DataArr[0].split('data:image/')
+                [1].split(';')[0];
+  console.log('Uploading ' + mimeType + ' file');
 
-  res.json(response);
-
-  }, err => {
+  /*Extract the wanted category from url params, and write the image
+    file to that location */
+  fs.writeFile("./public/images/" + req.params.category + "/"
+                + Date.now() + "." + mimeType
+                , base64DataArr[1], 'base64', function(err) {
     console.log(err);
-  })
+    res.end();
+  });
+
+  res.end('File uploaded !');
+
 });
 
 /* DELETE an image */
