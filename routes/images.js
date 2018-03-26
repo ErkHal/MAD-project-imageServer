@@ -4,61 +4,12 @@ const fs = require('fs');
 const ls = require('ls');
 
 /*
-<<<<<<< HEAD
-#################################################
-    MULTER CONFIGURATIONS
 
-const multer = require('multer');
-
-//Configure multer to store all images to static directory
-const storage = multer.diskStorage({
-    destination: function (req, file, cb) {
-      cb(null, 'public/images/' + req.params.category)
-    },
-    filename: function (req, file, cb) {
-      cb(null, Date.now() + '.' + file.mimetype.split('/')[1]);
-    }
-  });
-
-  const upload =
-    multer({
-      storage: storage
-    }).single('file');
-
-/*
-=======
->>>>>>> 3101f3499c54f019b92950d49b4cb5e135851160
 ################################################
     ROUTINGS
 */
 /* POST an image to a category */
-<<<<<<< HEAD
-router.post('/:category', function (req, res, next){
-  var tmp = new Buffer.from(req.body.file,'base64').toString()
-  console.log
-  var str = tmp.split(",")[1]
-  var ext = tmp.split("/",1)[1].split(";")[0]
-  var raw = new Buffer.from(str, 'base64')
 
-  fs.writeFile('./public/images/'+req.params.category+'/'+Date.now()+"."+ext,raw, function(err) {
-    if(err) console.log("error from writefile idk why")
-  })
-  
- console.log("after assingment")
-
-  const host = req.hostname;
-
-  const response = {
-    "message":"File Uploaded !",
-    "url": "test"
-  };
-
-  res.json(response)
-
-  }, err => {
-    console.log("encountered an error somwhere somehow idk lol")
-  });
-=======
 router.post('/:category',(req, res , next) => {
 
   /*Split the received string into data type declaration and
@@ -82,7 +33,6 @@ router.post('/:category',(req, res , next) => {
   res.end('File uploaded !');
 
 });
->>>>>>> 3101f3499c54f019b92950d49b4cb5e135851160
 
 /* DELETE an image */
 var findRemoveSync = require('find-remove')
