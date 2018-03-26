@@ -4,10 +4,12 @@ const fs = require('fs');
 const ls = require('ls');
 
 /*
+
 ################################################
     ROUTINGS
 */
 /* POST an image to a category */
+
 router.post('/:category',(req, res , next) => {
 
   /*Split the received string into data type declaration and

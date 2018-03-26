@@ -17,14 +17,13 @@ router.get('/', (req, res, next) => {
 
   try {
 
-    //List all created categories and push them to the array
     let listedCategories = ls('./public/images/*');
     let categories = [];
+
     listedCategories.forEach( listing => {
       categories.push(listing.name);
     });
 
-    //Return JSON with all categories in string[]
     let reply = {
       "categories":  categories
     };
