@@ -4,6 +4,7 @@ const fs = require('fs');
 const ls = require('ls');
 
 /*
+<<<<<<< HEAD
 #################################################
     MULTER CONFIGURATIONS
 
@@ -25,10 +26,13 @@ const storage = multer.diskStorage({
     }).single('file');
 
 /*
+=======
+>>>>>>> 3101f3499c54f019b92950d49b4cb5e135851160
 ################################################
     ROUTINGS
 */
 /* POST an image to a category */
+<<<<<<< HEAD
 router.post('/:category', function (req, res, next){
   var tmp = new Buffer.from(req.body.file,'base64').toString()
   console.log
@@ -54,6 +58,31 @@ router.post('/:category', function (req, res, next){
   }, err => {
     console.log("encountered an error somwhere somehow idk lol")
   });
+=======
+router.post('/:category',(req, res , next) => {
+
+  /*Split the received string into data type declaration and
+   the actual base64 string*/
+  let base64DataArr = req.body.file.split(',');
+
+  //Extract the mimetype from the data declaration string
+  let mimeType = base64DataArr[0].split('data:image/')
+                [1].split(';')[0];
+  console.log('Uploading ' + mimeType + ' file');
+
+  /*Extract the wanted category from url params, and write the image
+    file to that location */
+  fs.writeFile("./public/images/" + req.params.category + "/"
+                + Date.now() + "." + mimeType
+                , base64DataArr[1], 'base64', function(err) {
+    console.log(err);
+    res.end();
+  });
+
+  res.end('File uploaded !');
+
+});
+>>>>>>> 3101f3499c54f019b92950d49b4cb5e135851160
 
 /* DELETE an image */
 var findRemoveSync = require('find-remove')
