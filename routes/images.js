@@ -14,6 +14,9 @@ router.post('/:category',(req, res , next) => {
 
   /*Split the received string into data type declaration and
    the actual base64 string*/
+
+  console.log(req.body);
+
   let base64DataArr = req.body.file.split(',');
 
   //Extract the mimetype from the data declaration string
