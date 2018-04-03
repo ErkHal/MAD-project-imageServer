@@ -15,21 +15,23 @@ router.post('/:category',(req, res , next) => {
   /*Split the received string into data type declaration and
    the actual base64 string*/
 
-  console.log(req.body);
+  console.log(req.body.type);
 
-  let base64DataArr = req.body.file.split(',');
+  let base64Data = req.body.file;
 
-  //Extract the mimetype from the data declaration string
-  let mimeType = base64DataArr[0].split('data:image/')
-                [1].split(';')[0];
+  //Extract the mimetype from JSON
+  let mimeType = req.body.type;
+
   console.log('Uploading ' + mimeType + ' file');
 
   /*Extract the wanted category from url params, and write the image
     file to that location */
   fs.writeFile("./public/images/" + req.params.category + "/"
                 + Date.now() + "." + mimeType
-                , base64DataArr[1], 'base64', function(err) {
-    console.log(err);
+                , base64Data, 'base64', function(err) {
+    if(err) {
+      console.log(err);
+    }
     res.end();
   });
 
