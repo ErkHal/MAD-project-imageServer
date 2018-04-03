@@ -20,7 +20,7 @@ router.post('/:category',(req, res , next) => {
   let base64Data = req.body.file;
 
   //Extract the mimetype from JSON
-  let mimeType = req.body.type;
+  let mimeType = req.body.mimetype;
 
   console.log('Uploading ' + mimeType + ' file');
 
