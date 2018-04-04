@@ -26,7 +26,7 @@ router.post('/:category',(req, res , next) => {
   fs.writeFile("./public/images/" + req.params.category + "/"
                 + Date.now() + "." + mimeType
                 , base64DataArr[1], 'base64', function(err) {
-    console.log(err);
+    if(err)console.log(err);
     res.end();
   });
 
