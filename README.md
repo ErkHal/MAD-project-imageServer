@@ -33,23 +33,19 @@ The project is implemented on the base of
 * **MorganJS**
   
 ## API
-* Base URL
-```
-https://www.
-```
 * **POST** - upload image of a category to the server
 ```
-https://www./images/{category}
+{baseURL}/images/*{category}*
 ```
 * **GET** - get all image(s) from a category
 ```
-https://www./images/{category}
+{baseURL}/images/*{category}*
 ```
 * **GET** - get all categories
 ```
-https://www./categories/
+{baseURL}/categories/
 ```
 * **GET** - get all users
 ```
-https://www./users/
+{baseURL}/users/
 ```
