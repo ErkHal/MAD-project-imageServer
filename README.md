@@ -35,11 +35,11 @@ The project is implemented on the base of
 ## API
 * **POST** - upload image of a category to the server
 ```
-{baseURL}/images/*{category}*
+{baseURL}/images/{category}
 ```
 * **GET** - get all image(s) from a category
 ```
-{baseURL}/images/*{category}*
+{baseURL}/images/{category}
 ```
 * **GET** - get all categories
 ```
