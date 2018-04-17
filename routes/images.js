@@ -28,15 +28,10 @@ router.post('/:category',(req, res , next) => {
     file to that location */
   fs.writeFile("./public/images/" + req.params.category + "/"
                 + Date.now() + "." + mimeType
-<<<<<<< HEAD
-                , base64DataArr[1], 'base64', function(err) {
-    if(err)console.log(err);
-=======
                 , base64Data, 'base64', function(err) {
     if(err) {
       console.log(err);
     }
->>>>>>> 90e3cc835499b4c76e2e433bf7d6f07ba88d5f5b
     res.end();
   });
 
