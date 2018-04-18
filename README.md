@@ -3,7 +3,7 @@
 ## Introduction
 Recycle Where is a categorizing recyclable wastes application based on the input images from users.
 The process is powered by machine learning.
-This repository consists of the back-end of the application. The front-end, which is build on iOS, could be found via this [link](). 
+This repository consists of the back-end of the application. The front-end, which is build on iOS, could be found via this [link](https://github.com/stahamnguyen/recycleWhere). 
 The original version of the application is completed as a project for students in Mobile Development major of the Metropolia UAS in 2018.
 
 ## Installation
